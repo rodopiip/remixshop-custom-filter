@@ -86,8 +86,8 @@
             console.log("maxFilterValue: " + maxFilterValue);
             console.log("regex: " + regex);
 
-            var list = $(".product-listing")[0];
-            var items = list.children;
+            let list = $(".product-listing")[0];
+            let items = list.children;
             for (let i = 0; i < items.length; i++) {
                 let itemAnchor = items[i].getElementsByClassName("product-brand")[0];
                 let url = itemAnchor.href;
