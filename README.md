@@ -16,9 +16,9 @@
 
 4. Поставете копирания в стъпка 2. код.
    
-5. Натиснете <kbd>Ctrl</kbd>+<kbd>S</kbd>, за да го запазите.
-
 ![image](https://github.com/user-attachments/assets/d2c7dd2e-08fe-47bf-80bd-b8efadceecdc)
+
+5. Натиснете <kbd>Ctrl</kbd>+<kbd>S</kbd>, за да го запазите.
 
 6. Готовo.
 
