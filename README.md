@@ -14,13 +14,13 @@
    
 ![image](https://github.com/user-attachments/assets/de93d582-1258-4dbb-8a9d-2d0a19ccdf43)
 
-4. Поставете копирания в стъпка 2. код.
+5. Поставете копирания в стъпка 2. код.
    
 ![image](https://github.com/user-attachments/assets/d2c7dd2e-08fe-47bf-80bd-b8efadceecdc)
 
-5. Натиснете <kbd>Ctrl</kbd>+<kbd>S</kbd>, за да го запазите.
+6. Натиснете <kbd>Ctrl</kbd>+<kbd>S</kbd>, за да го запазите.
 
-6. Готовo.
+7. Готовo.
 
 ## Конфигурация
 Натиснете:
