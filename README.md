@@ -2,25 +2,31 @@
 
 ## Инсталиране
 
-1. Инсталирайте [Tampermonkey](https://tampermonkey.net/)
+1. Отидете на [chrome://extensions](chrome://extensions)
 
-2. Отидете на кода на [userscript.js](https://raw.githubusercontent.com/vasilvas99/remixshop-custom-filter/main/userscript.js) и го копирайте
+2. Активирайте Developer Mode, ако не сте:
 
-3. Отворете Tampermonkey разширението и отидете в Dashboard-a:
+![image](https://github.com/user-attachments/assets/2b3f26bd-f681-4a75-836e-f54d8f21b03a)
+
+3. Инсталирайте [Tampermonkey](https://tampermonkey.net/)
+
+4. Отидете на кода на [userscript.js](https://raw.githubusercontent.com/vasilvas99/remixshop-custom-filter/main/userscript.js) и го копирайте
+
+5. Отворете Tampermonkey разширението и отидете в Dashboard-a:
    
 ![image](https://github.com/user-attachments/assets/9afba0f5-db91-4974-b4dd-6a814d4dc051)
 
-4. Създайте нов userscript:
+6. Създайте нов userscript:
    
 ![image](https://github.com/user-attachments/assets/de93d582-1258-4dbb-8a9d-2d0a19ccdf43)
 
-5. Поставете копирания в стъпка 2. код.
+7. Поставете копирания в стъпка 2. код.
    
 ![image](https://github.com/user-attachments/assets/d2c7dd2e-08fe-47bf-80bd-b8efadceecdc)
 
-6. Натиснете <kbd>Ctrl</kbd>+<kbd>S</kbd>, за да го запазите.
+8. Натиснете <kbd>Ctrl</kbd>+<kbd>S</kbd>, за да го запазите.
 
-7. Готовo.
+9. Готовo.
 
 ## Конфигурация
 Натиснете:
