@@ -13,9 +13,10 @@
 (function () {
     'use strict';
 
-    let minFilterValue = 80.0;
-    let maxFilterValue = 100.0;
-    let regexStringPattern = "Талия\\s+(\\d+(?:\\.\\d+)?)\\s+см";
+    // Load from localStorage or use default values
+    let minFilterValue = localStorage.getItem('minFilterValue') ? parseFloat(localStorage.getItem('minFilterValue')) : 80.0;
+    let maxFilterValue = localStorage.getItem('maxFilterValue') ? parseFloat(localStorage.getItem('maxFilterValue')) : 100.0;
+    let regexStringPattern = localStorage.getItem('regexStringPattern') || "Талия\\s+(\\d+(?:\\.\\d+)?)\\s+см";
 
     // HTML template for configuration modal
     const modalHTML = `
@@ -56,10 +57,16 @@
         maxFilterValue = Math.max(parsedMin, parsedMax);
 
         // In case those two values were swapped (user entered a min >= max)
-        // swap them in the input fields as well for consitency
+        // swap them in the input fields as well for consistency
         minFilterValueInput.value = minFilterValue;
         maxFilterValueInput.value = maxFilterValue;
         regexStringPattern = regexInput.value;
+
+        // Save to localStorage
+        localStorage.setItem('minFilterValue', minFilterValue);
+        localStorage.setItem('maxFilterValue', maxFilterValue);
+        localStorage.setItem('regexStringPattern', regexStringPattern);
+
         modal.style.display = "none";
     });
 
