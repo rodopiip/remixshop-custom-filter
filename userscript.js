@@ -11,21 +11,21 @@
 // ==/UserScript==
 
 (function () {
-  "use strict";
+    "use strict";
 
-  // Load from localStorage or use default values
-  let minFilterValue = localStorage.getItem("minFilterValue")
-    ? parseFloat(localStorage.getItem("minFilterValue"))
-    : 80.0;
-  let maxFilterValue = localStorage.getItem("maxFilterValue")
-    ? parseFloat(localStorage.getItem("maxFilterValue"))
-    : 100.0;
-  let regexStringPattern =
-    localStorage.getItem("regexStringPattern") ||
-    "Талия\\s+(\\d+(?:\\.\\d+)?)\\s+см";
+    // Load from localStorage or use default values
+    let minFilterValue = localStorage.getItem("minFilterValue")
+        ? parseFloat(localStorage.getItem("minFilterValue"))
+        : 80.0;
+    let maxFilterValue = localStorage.getItem("maxFilterValue")
+        ? parseFloat(localStorage.getItem("maxFilterValue"))
+        : 100.0;
+    let regexStringPattern =
+        localStorage.getItem("regexStringPattern") ||
+        "Талия\\s+(\\d+(?:\\.\\d+)?)\\s+см";
 
-  // HTML template for configuration modal
-  const modalHTML = `
+    // HTML template for configuration modal
+    const modalHTML = `
         <div id="filterConfigModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); padding:20px; background-color:white; border:1px solid #ccc; z-index:9999;">
             <h2>Конфигурация на филтъра</h2>
             <label>Минимална стойност на филтъра:</label>
@@ -39,94 +39,94 @@
         </div>
     `;
 
-  // Inject modal into the body
-  document.body.insertAdjacentHTML("beforeend", modalHTML);
+    // Inject modal into the body
+    document.body.insertAdjacentHTML("beforeend", modalHTML);
 
-  const modal = document.getElementById("filterConfigModal");
-  const minFilterValueInput = document.getElementById("minFilterValueInput");
-  const maxFilterValueInput = document.getElementById("maxFilterValueInput");
-  const regexInput = document.getElementById("regexInput");
+    const modal = document.getElementById("filterConfigModal");
+    const minFilterValueInput = document.getElementById("minFilterValueInput");
+    const maxFilterValueInput = document.getElementById("maxFilterValueInput");
+    const regexInput = document.getElementById("regexInput");
 
-  // Show the modal when Ctrl+Shift+B is pressed
-  document.addEventListener("keydown", (event) => {
-    if (event.ctrlKey && event.shiftKey && event.key === "B") {
-      event.preventDefault();
-      modal.style.display = "block";
-    }
-  });
+    // Show the modal when Ctrl+Shift+B is pressed
+    document.addEventListener("keydown", (event) => {
+        if (event.ctrlKey && event.shiftKey && event.key === "B") {
+            event.preventDefault();
+            modal.style.display = "block";
+        }
+    });
 
-  // Save button of modal functionality
-  document.getElementById("saveConfigButton").addEventListener("click", () => {
-    const parsedMin = parseFloat(minFilterValueInput.value);
-    const parsedMax = parseFloat(maxFilterValueInput.value);
-    minFilterValue = Math.min(parsedMin, parsedMax);
-    maxFilterValue = Math.max(parsedMin, parsedMax);
+    // Save button of modal functionality
+    document.getElementById("saveConfigButton").addEventListener("click", () => {
+        const parsedMin = parseFloat(minFilterValueInput.value);
+        const parsedMax = parseFloat(maxFilterValueInput.value);
+        minFilterValue = Math.min(parsedMin, parsedMax);
+        maxFilterValue = Math.max(parsedMin, parsedMax);
 
-    // In case those two values were swapped (user entered a min >= max)
-    // swap them in the input fields as well for consistency
-    minFilterValueInput.value = minFilterValue;
-    maxFilterValueInput.value = maxFilterValue;
-    regexStringPattern = regexInput.value;
+        // In case those two values were swapped (user entered a min >= max)
+        // swap them in the input fields as well for consistency
+        minFilterValueInput.value = minFilterValue;
+        maxFilterValueInput.value = maxFilterValue;
+        regexStringPattern = regexInput.value;
 
-    // Save to localStorage
-    localStorage.setItem("minFilterValue", minFilterValue);
-    localStorage.setItem("maxFilterValue", maxFilterValue);
-    localStorage.setItem("regexStringPattern", regexStringPattern);
+        // Save to localStorage
+        localStorage.setItem("minFilterValue", minFilterValue);
+        localStorage.setItem("maxFilterValue", maxFilterValue);
+        localStorage.setItem("regexStringPattern", regexStringPattern);
 
-    modal.style.display = "none";
-  });
+        modal.style.display = "none";
+    });
 
-  // Close button of modal functionality
-  document.getElementById("closeModalButton").addEventListener("click", () => {
-    modal.style.display = "none";
-  });
+    // Close button of modal functionality
+    document.getElementById("closeModalButton").addEventListener("click", () => {
+        modal.style.display = "none";
+    });
 
-  // Filtering logic when Ctrl+B is pressed
-  document.addEventListener("keydown", (event) => {
-    // On Ctrl+B run filter
-    if (event.ctrlKey && event.key === "b") {
-      event.preventDefault();
-      const regex = new RegExp(regexStringPattern);
+    // Filtering logic when Ctrl+B is pressed
+    document.addEventListener("keydown", (event) => {
+        // On Ctrl+B run filter
+        if (event.ctrlKey && event.key === "b") {
+            event.preventDefault();
+            const regex = new RegExp(regexStringPattern);
 
-      console.log(
-        "Filter configuration:",
-        JSON.stringify({ minFilterValue, maxFilterValue, regex }),
-      );
+            console.log(
+                "Filter configuration:",
+                JSON.stringify({ minFilterValue, maxFilterValue, regex }),
+            );
 
-      const items = document.querySelectorAll(
-        ".product-listing .product-brand",
-      );
+            const items = document.querySelectorAll(
+                ".product-listing .product-brand",
+            );
 
-      items.forEach((item) => {
-        const itemAnchor = item;
-        const url = itemAnchor.href;
+            items.forEach((item) => {
+                const itemAnchor = item;
+                const url = itemAnchor.href;
 
-        $.ajax({
-          url,
-          success: (data) => {
-            const descriptionsText = $(data)
-              .find(".product-description")
-              .text()
-              .trim();
-            const match = descriptionsText.match(regex);
-            const isMatchValid =
-              match &&
-              parseFloat(match[1]) >= minFilterValue &&
-              parseFloat(match[1]) <= maxFilterValue;
+                $.ajax({
+                    url,
+                    success: (data) => {
+                        const descriptionsText = $(data)
+                            .find(".product-description")
+                            .text()
+                            .trim();
+                        const match = descriptionsText.match(regex);
+                        const isMatchValid =
+                            match &&
+                            parseFloat(match[1]) >= minFilterValue &&
+                            parseFloat(match[1]) <= maxFilterValue;
 
-            // Prevents spam of ✅ and ❌
-            if (
-              itemAnchor.innerText.startsWith("✅") ||
-              itemAnchor.innerText.startsWith("❌")
-            ) {
-              itemAnchor.innerText = itemAnchor.innerText.substring(1);
-            }
+                        // Prevents spam of ✅ and ❌
+                        if (
+                            itemAnchor.innerText.startsWith("✅") ||
+                            itemAnchor.innerText.startsWith("❌")
+                        ) {
+                            itemAnchor.innerText = itemAnchor.innerText.substring(1);
+                        }
 
-            itemAnchor.innerText =
-              (isMatchValid ? "✅" : "❌") + itemAnchor.innerText;
-          },
-        });
-      });
-    }
-  });
+                        itemAnchor.innerText =
+                            (isMatchValid ? "✅" : "❌") + itemAnchor.innerText;
+                    },
+                });
+            });
+        }
+    });
 })();
