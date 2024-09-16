@@ -92,7 +92,7 @@
 
                 $.ajax({
                     url,
-                    success: function (data) {
+                    success: (data) => {
                         const descriptionsText = $(data).find('.product-description').text().trim();
                         const match = descriptionsText.match(regex);
                         const isMatchValid = match && parseFloat(match[1]) >= minFilterValue && parseFloat(match[1]) <= maxFilterValue;
