@@ -1,5 +1,11 @@
 ﻿# Regex филтър за ремиксшоп
 
+## Технологии
+
+- JavaScript
+- JQuery
+- Tampermonkey
+
 ## Инсталиране
 
 1. Отидете на [chrome://extensions](chrome://extensions)
