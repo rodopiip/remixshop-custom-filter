@@ -53,3 +53,9 @@
 Ще видите ✅ и ❌, до имената продуктите, които съответно отговарят или не отговарят на филтъра: 
 
 ![image](https://github.com/user-attachments/assets/f0c278ce-acb6-4bcf-8f93-b60a6416025d)
+
+# Принос
+
+- [@rodopiip](https://github.com/rodopiip) -> Идея, Разработка, Тестване
+
+- [@vasilvas99](https://github.com/vasilvas99) -> Разработка
