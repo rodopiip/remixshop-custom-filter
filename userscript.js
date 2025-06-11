@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      2024-09-14
 // @description  Custom description filters for RemixShop
-// @author       vasilvas99
+// @author       rodopiip
 // @match        https://www.tampermonkey.net/index.php?ext=dhdg&updated=true&version=5.2.3
 // @match        https://remixshop.com/*
 // @icon         https://remixshop.com/images/ld/logo/logo-remix.svg
